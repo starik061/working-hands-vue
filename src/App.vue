@@ -80,10 +80,12 @@ export default {
   align-items: center;
   width: 30px;
   height: 30px;
+  fill: #000000;
 
   &:hover {
     cursor: pointer;
-    outline: 1px solid black;
+    outline: 1px solid rgb(115, 188, 233);
+    fill: rgb(115, 188, 233)
   }
 }
 
@@ -128,7 +130,7 @@ export default {
 
   &:hover {
     cursor: pointer;
-    outline: 1px solid black;
+    outline: 1px solid rgb(115, 188, 233);
   }
 
   &.week {
