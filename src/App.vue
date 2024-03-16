@@ -4,11 +4,11 @@
   <div class="main-wrapper">
     <div class="calendar-wrapper">
       <div class="month-container">
-        <div class="change-month-arrow">
+        <div class="change-month-arrow" @click="handlePrevMonthClick">
           <NextArrowIcon class="change-month-arrow--icon reversed-next-icon" />
         </div>
         <span>{{ currentMonth }}</span>
-        <div class="change-month-arrow">
+        <div class="change-month-arrow" @click="handleNextMonthClick">
           <NextArrowIcon class="change-month-arrow--icon" />
         </div>
       </div>
@@ -44,11 +44,14 @@ export default {
       lang: "ru",
       weekData: weekData,
       monthData: monthData,
-      activeMonth: 0
+      activeMonth: 0,
+      currentMonth: null,
     };
   },
   computed: {
-    currentMonth() {
+  },
+  methods: {
+    getCurrentMonth() {
       const months = monthData.map((obj) => {
         return obj.language[this.lang]
       });
@@ -57,18 +60,46 @@ export default {
       const month = months[currentDate.getMonth()];
       const year = currentDate.getFullYear();
 
-      return `${month} ${year}`;
-    }
+      this.currentMonth = `${month} ${year}`;
+    },
 
-  },
-  methods: {
     getCurrentDay() {
       const today = new Date();
       return today.getDate();
+    },
+    handlePrevMonthClick() {
+      const currentMonth = this.currentMonth.split(" ")[0];
+      let currentYear = this.currentMonth.split(" ")[1];
+
+      let prevMonthIndex = monthData.findIndex((el) => {
+        return el.language[this.lang] === currentMonth
+      }) - 1;
+
+      if (prevMonthIndex === -1) {
+        prevMonthIndex = 11;
+        currentYear = Number(currentYear) - 1;
+      }
+
+      this.currentMonth = `${monthData[prevMonthIndex]["language"][this.lang]} ${currentYear}`;
+    },
+    handleNextMonthClick() {
+      const currentMonth = this.currentMonth.split(" ")[0];
+      let currentYear = this.currentMonth.split(" ")[1];
+
+      let nextMonthIndex = monthData.findIndex((el) => {
+        return el.language[this.lang] === currentMonth
+      }) + 1;
+
+      if (nextMonthIndex === 12) {
+        nextMonthIndex = 0;
+        currentYear = Number(currentYear) + 1;
+      }
+
+      this.currentMonth = `${monthData[nextMonthIndex]["language"][this.lang]} ${currentYear}`;
     }
   },
   mounted() {
-
+    this.getCurrentMonth();
   }
 };
 </script>
