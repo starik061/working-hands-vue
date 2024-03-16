@@ -19,8 +19,8 @@
       </div>
 
       <div class="days-container">
-        <span class="week-and-day-size" :class="{ 'active-day': dayNumber === getCurrentDay() }"
-          v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber">{{
+        <span class="week-and-day-size" :class="{ 'active-day': dayNumber === activeDay }"
+          v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber" @click="handleDayClick">{{
           dayNumber }}</span>
       </div>
     </div>
@@ -46,6 +46,7 @@ export default {
       monthData: monthData,
       activeMonth: 0,
       currentMonth: null,
+      activeDay: null,
     };
   },
   computed: {
@@ -63,9 +64,9 @@ export default {
       this.currentMonth = `${month} ${year}`;
     },
 
-    getCurrentDay() {
+    getActiveDay() {
       const today = new Date();
-      return today.getDate();
+      this.activeDay = today.getDate();
     },
     handlePrevMonthClick() {
       const currentMonth = this.currentMonth.split(" ")[0];
@@ -81,6 +82,7 @@ export default {
       }
 
       this.currentMonth = `${monthData[prevMonthIndex]["language"][this.lang]} ${currentYear}`;
+      this.activeDay = null;
     },
     handleNextMonthClick() {
       const currentMonth = this.currentMonth.split(" ")[0];
@@ -96,10 +98,17 @@ export default {
       }
 
       this.currentMonth = `${monthData[nextMonthIndex]["language"][this.lang]} ${currentYear}`;
+      this.activeDay = null;
+    },
+
+    handleDayClick(ev) {
+      this.activeDay = Number(ev.target.
+        innerText);
     }
   },
   mounted() {
     this.getCurrentMonth();
+    this.getActiveDay();
   }
 };
 </script>
