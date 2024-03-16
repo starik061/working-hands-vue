@@ -1,29 +1,145 @@
 <template>
-  test
+  <h1 class="visually-hidden">Calendar</h1>
+
+  <div class="main-wrapper">
+    <div class="calendar-wrapper">
+      <div class="month-container">
+        <div class="change-month-arrow">
+          <NextArrowIcon class="change-month-arrow--icon reversed-next-icon" />
+        </div>
+        <span>{{ currentMonth }}</span>
+        <div class="change-month-arrow">
+          <NextArrowIcon class="change-month-arrow--icon" />
+        </div>
+      </div>
+
+      <div class="week-container">
+        <span class="week-and-day-size week" v-for="(weekDay, weekDayIdx) in weekData" :key="weekDayIdx">{{
+          weekDay[lang] }}</span>
+      </div>
+
+      <div class="days-container">
+        <span class="week-and-day-size" v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber">{{
+          dayNumber }}</span>
+      </div>
+    </div>
+    <form action="">
+      <input class="date-input" type="text">
+    </form>
+  </div>
 </template>
 
 <script>
-
+import NextArrowIcon from "@/components/icons/NextArrowIcon.vue";
+import monthData from "/public/month_data.json";
+import weekData from "/public/week_data.json";
 
 export default {
-
+  components: {
+    NextArrowIcon
+  },
   data() {
     return {
+      lang: "ru",
+      weekData: weekData,
+      monthData: monthData,
+      activeMonth: 0
+    };
+  },
+  computed: {
+    currentMonth() {
+      const months = monthData.map((obj) => {
+        return obj.language[this.lang]
+      });
 
+      const currentDate = new Date();
+      const month = months[currentDate.getMonth()];
+      const year = currentDate.getFullYear();
+
+      return `${month} ${year}`;
     }
   },
-
-  computed: {
-
-  },
-
   methods: {
   },
-
   mounted() {
-
   }
-}
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.change-month-arrow {
+  display: flex;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    outline: 1px solid black;
+  }
+}
+
+.change-month-arrow--icon {
+  margin-left: 11px;
+}
+
+.month-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px 5px;
+  font-size: 16px;
+}
+
+.reversed-next-icon {
+  transform: scaleX(-1);
+  margin-left: 9px;
+}
+
+.week-container {
+  display: flex;
+  width: 210px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.days-container {
+  display: flex;
+  width: 210px;
+  flex-wrap: wrap;
+}
+
+.week-and-day-size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    outline: 1px solid black;
+  }
+
+  &.week {
+    pointer-events: none;
+    outline: none;
+    user-select: none;
+  }
+}
+
+.date-input {
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 2px;
+}
+</style>

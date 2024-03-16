@@ -2,32 +2,32 @@
   {
     "id": 0,
     "language": {
-      "ru": "Январь",
-      "en": "January"
+      "ru": "Янв",
+      "en": "Jan"
     },
     "days": 31
   },
   {
     "id": 1,
     "language": {
-      "ru": "Февраль",
-      "en": "February"
+      "ru": "Фев",
+      "en": "Feb"
     },
     "days": 28
   },
   {
     "id": 2,
     "language": {
-      "ru": "Март",
-      "en": "March"
+      "ru": "Мар",
+      "en": "Mar"
     },
     "days": 31
   },
   {
     "id": 3,
     "language": {
-      "ru": "Апрель",
-      "en": "April"
+      "ru": "Апр",
+      "en": "Apr"
     },
     "days": 30
   },
@@ -42,56 +42,56 @@
   {
     "id": 5,
     "language": {
-      "ru": "Июнь",
-      "en": "June"
+      "ru": "Июн",
+      "en": "Jun"
     },
     "days": 30
   },
   {
     "id": 6,
     "language": {
-      "ru": "Июль",
-      "en": "July"
+      "ru": "Июл",
+      "en": "Jul"
     },
     "days": 31
   },
   {
     "id": 7,
     "language": {
-      "ru": "Август",
-      "en": "August"
+      "ru": "Авг",
+      "en": "Aug"
     },
     "days": 31
   },
   {
     "id": 8,
     "language": {
-      "ru": "Сентябрь",
-      "en": "September"
+      "ru": "Сен",
+      "en": "Sep"
     },
     "days": 30
   },
   {
     "id": 9,
     "language": {
-      "ru": "Октябрь",
-      "en": "October"
+      "ru": "Окт",
+      "en": "Oct"
     },
     "days": 31
   },
   {
     "id": 10,
     "language": {
-      "ru": "Ноябрь",
-      "en": "November"
+      "ru": "Ноя",
+      "en": "Nov"
     },
     "days": 30
   },
   {
     "id": 11,
     "language": {
-      "ru": "Декабрь",
-      "en": "December"
+      "ru": "Дек",
+      "en": "Dec"
     },
     "days": 31
   }
