@@ -32,7 +32,10 @@
       </div>
     </div>
     <form action="">
-      <input class="date-input" type="text" :value="activeFullDate">
+      <div class="input-wrapper">
+        <input class="date-input" type="text" :value="activeFullDate" @change="handleDateChange">
+        <span class="help-text">образец формата даты: 2024-Янв-11 </span>
+      </div>
     </form>
   </div>
 </template>
@@ -138,6 +141,15 @@ export default {
     handleDayClick(ev) {
       this.activeDay = Number(ev.target.
         innerText);
+    },
+
+    handleDateChange(ev) {
+      const dateArray = ev.target.value.split('-');
+      console.log(dateArray)
+
+      this.currentMonth = `${dateArray[1]} ${dateArray[0]}`;;
+      this.activeDay = Number(dateArray[2]);
+
     }
   },
   mounted() {
@@ -246,5 +258,17 @@ export default {
 
 .active-day {
   background-color: rgb(115, 188, 233);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.help-text {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  color: red;
+  font-size: 9px;
 }
 </style>
