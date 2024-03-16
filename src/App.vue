@@ -32,7 +32,7 @@
       </div>
     </div>
     <form action="">
-      <input class="date-input" type="text">
+      <input class="date-input" type="text" :value="activeFullDate">
     </form>
   </div>
 </template>
@@ -57,6 +57,19 @@ export default {
     };
   },
   computed: {
+    activeFullDate() {
+      if (this.currentMonth && this.activeDay) {
+
+
+        const [month, year] = this.currentMonth.split(" ");
+
+
+        const dayFormatted = this.activeDay < 10 ? `0${this.activeDay}` : this.activeDay;
+
+        return `${year}-${month}-${dayFormatted}`;
+      }
+      return "not choosen";
+    }
   },
   methods: {
     getCurrentMonth() {
@@ -77,8 +90,16 @@ export default {
     },
 
     changeLanguage(ev) {
+      const currentMonth = this.currentMonth.split(" ")[0];
+      let currentYear = this.currentMonth.split(" ")[1];
+
+      let monthIndex = monthData.findIndex((el) => {
+        return el.language[this.lang] === currentMonth
+      });
+
       this.lang = ev.target.value;
-      this.getCurrentMonth()
+
+      this.currentMonth = `${monthData[monthIndex]["language"][this.lang]} ${currentYear}`;
     },
 
     handlePrevMonthClick() {
