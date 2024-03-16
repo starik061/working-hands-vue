@@ -1,6 +1,13 @@
 <template>
   <h1 class="visually-hidden">Calendar</h1>
+  <div class="lang-container">
+    <label class="lang-select-text" for="languages">Choose a car:</label>
 
+    <select name="languages" id="languages" @change="changeLanguage">
+      <option value="ru" selected>Русский</option>
+      <option value="en">English</option>
+    </select>
+  </div>
   <div class="main-wrapper">
     <div class="calendar-wrapper">
       <div class="month-container">
@@ -15,13 +22,13 @@
 
       <div class="week-container">
         <span class="week-and-day-size week" v-for="(weekDay, weekDayIdx) in weekData" :key="weekDayIdx">{{
-          weekDay[lang] }}</span>
+      weekDay[lang] }}</span>
       </div>
 
       <div class="days-container">
         <span class="week-and-day-size" :class="{ 'active-day': dayNumber === activeDay }"
           v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber" @click="handleDayClick">{{
-          dayNumber }}</span>
+      dayNumber }}</span>
       </div>
     </div>
     <form action="">
@@ -68,6 +75,12 @@ export default {
       const today = new Date();
       this.activeDay = today.getDate();
     },
+
+    changeLanguage(ev) {
+      this.lang = ev.target.value;
+      this.getCurrentMonth()
+    },
+
     handlePrevMonthClick() {
       const currentMonth = this.currentMonth.split(" ")[0];
       let currentYear = this.currentMonth.split(" ")[1];
@@ -114,6 +127,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.lang-container {
+  display: flex;
+  align-items: center;
+}
+
+.lang-select-text {
+  flex-grow: 1;
+  text-align: end;
+  margin-right: 4px;
+}
+
 .main-wrapper {
   display: flex;
   justify-content: center;
