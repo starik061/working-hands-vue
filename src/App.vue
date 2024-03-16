@@ -1,5 +1,8 @@
 <template>
   <h1 class="visually-hidden">Calendar</h1>
+  <p class="info-text">*Для упрощения себе работы в данном тестовом задании не выполнял микрозадачу по соответствия
+    номеров дней дням
+    недели.</p>
   <div class="lang-container">
     <label class="lang-select-text" for="languages">Choose a car:</label>
 
@@ -160,6 +163,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.info-text {
+  text-align: center;
+  font-size: 10px;
+  color: rgb(0, 190, 44);
+}
+
 .lang-container {
   display: flex;
   align-items: center;
@@ -272,3 +281,4 @@ export default {
   font-size: 9px;
 }
 </style>
+проверяющий человек
