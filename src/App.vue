@@ -4,7 +4,7 @@
     номеров дней дням
     недели.</p>
   <div class="lang-container">
-    <label class="lang-select-text" for="languages">Choose a car:</label>
+    <label class="lang-select-text" for="languages">Choose a language:</label>
 
     <select name="languages" id="languages" @change="changeLanguage">
       <option value="ru" selected>Русский</option>
@@ -34,9 +34,9 @@
       dayNumber }}</span>
       </div>
     </div>
-    <form action="">
+    <form @submit.prevent="handleDateChange">
       <div class="input-wrapper">
-        <input class="date-input" type="text" :value="activeFullDate" @change="handleDateChange">
+        <input class="date-input" type="text" :value="activeFullDate">
         <span class="help-text">образец формата даты: 2024-Янв-11 </span>
       </div>
     </form>
@@ -150,8 +150,7 @@ export default {
     },
 
     handleDateChange(ev) {
-      const dateArray = ev.target.value.split('-');
-      console.log(dateArray)
+      const dateArray = ev.target[0].value.split('-');
 
       this.currentMonth = `${dateArray[1]} ${dateArray[0]}`;;
       this.activeDay = Number(dateArray[2]);
