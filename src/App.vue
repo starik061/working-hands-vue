@@ -88,6 +88,7 @@ export default {
       const year = currentDate.getFullYear();
 
       this.currentMonth = `${month} ${year}`;
+      this.activeMonth = currentDate.getMonth();
     },
 
     getActiveDay() {
@@ -122,6 +123,7 @@ export default {
       }
 
       this.currentMonth = `${monthData[prevMonthIndex]["language"][this.lang]} ${currentYear}`;
+      this.activeMonth = prevMonthIndex;
       this.activeDay = null;
     },
     handleNextMonthClick() {
@@ -139,6 +141,7 @@ export default {
 
       this.currentMonth = `${monthData[nextMonthIndex]["language"][this.lang]} ${currentYear}`;
       this.activeDay = null;
+      this.activeMonth = nextMonthIndex;
     },
 
     handleDayClick(ev) {
