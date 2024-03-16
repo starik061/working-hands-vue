@@ -143,5 +143,12 @@ export default {
 .date-input {
   border: 1px solid rgb(192, 192, 192);
   border-radius: 2px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: 1px solid rgb(115, 188, 233);
+    outline: none;
+  }
 }
 </style>
