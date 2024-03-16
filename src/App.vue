@@ -19,7 +19,8 @@
       </div>
 
       <div class="days-container">
-        <span class="week-and-day-size" v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber">{{
+        <span class="week-and-day-size" :class="{ 'active-day': dayNumber === getCurrentDay() }"
+          v-for="dayNumber in monthData[activeMonth]['days']" :key="dayNumber">{{
           dayNumber }}</span>
       </div>
     </div>
@@ -58,10 +59,16 @@ export default {
 
       return `${month} ${year}`;
     }
+
   },
   methods: {
+    getCurrentDay() {
+      const today = new Date();
+      return today.getDate();
+    }
   },
   mounted() {
+
   }
 };
 </script>
@@ -150,5 +157,9 @@ export default {
     border: 1px solid rgb(115, 188, 233);
     outline: none;
   }
+}
+
+.active-day {
+  background-color: rgb(115, 188, 233);
 }
 </style>
